@@ -14,7 +14,12 @@ import java.util.Optional;
  */
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository ;
+
+    //외부에서 의존성 주입해주는거 --> DI
+    public MemberService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원가임
