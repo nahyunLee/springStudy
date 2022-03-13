@@ -1,5 +1,7 @@
 package springExample.hellospring.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import springExample.hellospring.domain.Member;
 import springExample.hellospring.repository.MemberRepository;
 import springExample.hellospring.repository.MemoryMemberRepository;
@@ -12,11 +14,17 @@ import java.util.Optional;
  * 비지니스를 처리하는게 role
  * 그래서 메서드명이 비지니스에 관련된 메서드 네이밍을 해야
  */
+@Service
+//@Component --> 원래 얘도 되지만 @Service에 들어가있음( Controller, repository 다 같음)
+// component로 하면 component스캔 방식
+// @Compoent가 있으면 스프링에서 객체 만들어서 컨테이너에 등록시켜둠
+//@autowired쓰면 연관관계를 이어주는것
 public class MemberService {
 
     private final MemberRepository memberRepository ;
 
     //외부에서 의존성 주입해주는거 --> DI
+    @Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
