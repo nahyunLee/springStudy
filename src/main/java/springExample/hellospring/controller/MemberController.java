@@ -2,7 +2,13 @@ package springExample.hellospring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import springExample.hellospring.domain.Member;
 import springExample.hellospring.service.MemberService;
+
+import java.util.List;
 
 // 스프링이 뜰 때 이 객체를 생성해서 컨테이너가 들고있음
 @Controller
@@ -50,4 +56,28 @@ public class MemberController {
 
     //controller는 직접 빈 등록을 못함
     //빈 등록 안되어있으면 @Autowired 동작 안함--> 스프링 컨테이너에 올라와야만 autowired 동작
+
+    //home.html에서 여기로 이
+    @GetMapping("members/new")
+    public String createForm(){
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("members/new")
+    public String create(MemberForm form){
+        Member member = new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+
+        return "members/memberList";
+    }
 }
