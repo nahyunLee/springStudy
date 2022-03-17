@@ -13,6 +13,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+//--> jvm에서 다 끝나는 테스트
 class MemberServiceTest {
 
 
@@ -83,4 +84,5 @@ class MemberServiceTest {
     @Test
     void findOne() {
     }
+
 }
