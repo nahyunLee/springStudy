@@ -1,13 +1,24 @@
 package springExample.hellospring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+//import springExample.hellospring.repository.JdbcMemberRepository;
 import springExample.hellospring.repository.MemberRepository;
 import springExample.hellospring.repository.MemoryMemberRepository;
 import springExample.hellospring.service.MemberService;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+//    public DataSource dataSource;
+//
+//    @Autowired
+//    public SpringConfig(DataSource dataSource){
+//        this.dataSource = dataSource;
+//    }
+
     //직접 빈 등록
 
     @Bean
@@ -21,5 +32,8 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository(){
         return new MemoryMemberRepository();
+//        return new JdbcMemberRepository();
+        //다형성
     }
+
 }
