@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import springExample.hellospring.repository.JdbcMemberRepository;
+import springExample.hellospring.repository.JdbcTemplateMemberRepository;
 import springExample.hellospring.repository.MemberRepository;
 import springExample.hellospring.repository.MemoryMemberRepository;
 import springExample.hellospring.service.MemberService;
@@ -12,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
-//    public DataSource dataSource;
+    public DataSource dataSource;
 //
 //    @Autowired
 //    public SpringConfig(DataSource dataSource){
@@ -31,9 +32,10 @@ public class SpringConfig {
     //직접 주입하는 장점
     @Bean
     public MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository();
+//        return new MemoryMemberRepository();
         //다형성
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 
 }
