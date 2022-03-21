@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import springExample.hellospring.repository.JdbcMemberRepository;
 import springExample.hellospring.repository.JdbcTemplateMemberRepository;
+import springExample.hellospring.repository.JpaMemberRepository;
 import springExample.hellospring.repository.MemberRepository;
 import springExample.hellospring.repository.MemoryMemberRepository;
 import springExample.hellospring.service.MemberService;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
@@ -19,6 +21,12 @@ public class SpringConfig {
 //    public SpringConfig(DataSource dataSource){
 //        this.dataSource = dataSource;
 //    }
+    public EntityManager em;
+
+    @Autowired
+    public SpringConfig(EntityManager em){
+        this.em = em;
+    }
 
     //직접 빈 등록
 
@@ -35,7 +43,8 @@ public class SpringConfig {
 //        return new JdbcMemberRepository();
 //        return new MemoryMemberRepository();
         //다형성
-        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
 }

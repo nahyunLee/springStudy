@@ -2,6 +2,7 @@ package springExample.hellospring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import springExample.hellospring.domain.Member;
 import springExample.hellospring.repository.MemberRepository;
 import springExample.hellospring.repository.MemoryMemberRepository;
@@ -19,6 +20,8 @@ import java.util.Optional;
 // component로 하면 component스캔 방식
 // @Compoent가 있으면 스프링에서 객체 만들어서 컨테이너에 등록시켜둠
 //@autowired쓰면 연관관계를 이어주는것
+@Transactional
+//jpa를 쓰려면 @trasactional을 해야함 --> 메서드에 해줘도 됨
 public class MemberService {
 
     private final MemberRepository memberRepository ;
@@ -33,7 +36,7 @@ public class MemberService {
      * 회원가임
      */
     public Long join(Member member){
-
+        //변경이 다 트랜잭션 안에서 실행되야함
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
