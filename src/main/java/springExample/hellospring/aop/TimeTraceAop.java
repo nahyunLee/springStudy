@@ -21,4 +21,7 @@ public class TimeTraceAop {
             System.out.println("END: " + joinPoint.toShortString() + "" + timeMs + "ms");
         }
     }
+    //프록시가 생성되는걸 보고싶으면 .getClass해서 보면됨
+    //EnharncerBySpringCGLIB --> 가 찍히면
+    //CGLIB는 복제를 해서 코드를 조작하는 기술
 }
