@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //import springExample.hellospring.repository.JdbcMemberRepository;
+import springExample.hellospring.aop.TimeTraceAop;
 import springExample.hellospring.repository.JdbcTemplateMemberRepository;
 import springExample.hellospring.repository.JpaMemberRepository;
 import springExample.hellospring.repository.MemberRepository;
@@ -59,4 +60,8 @@ public class SpringConfig {
 ////        return new JpaMemberRepository(em);
 //    }
 
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return new TimeTraceAop();
+//    }
 }
