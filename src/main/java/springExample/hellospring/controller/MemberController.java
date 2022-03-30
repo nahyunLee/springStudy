@@ -23,6 +23,7 @@ public class MemberController {
      * @Autowired 붙여서 쓰는 방법 --> 필드 의존성 주입
      * 필드 바꿀 방법이 없어서 별로 안좋음
      */
+//    @Autowired
     private final MemberService memberService;
 
     // 생성자로 service로 연결
